@@ -16,5 +16,11 @@ pipeline {
 		}
 		}
 		}
-		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './reports', reportFiles: 'HappyTripReport.html', reportName: 'Mohith Report', reportTitles: ''])
+		publishHTML(target : [allowMissing: false, 
+			     alwaysLinkToLastBuild: false, 
+			     keepAll: true,
+			     reportDir: 'reports', 
+			     reportFiles: 'HappyTripReport.html',
+			     reportName: 'Mohith Report', 
+			    ])
 }
