@@ -13,9 +13,12 @@ pipeline {
              bat 'mvn pom.xml clean install'
              bat 'mvn pom.xml compile'
              bat 'mvn pom.xml test'
+		bat 'java testng.xml'	
 		}
 		}
 		}
+	post{
+		always{
 		publishHTML(target : [allowMissing: false, 
 			     alwaysLinkToLastBuild: false, 
 			     keepAll: true,
@@ -23,4 +26,6 @@ pipeline {
 			     reportFiles: 'HappyTripReport.html',
 			     reportName: 'Mohith Report', 
 			    ])
+		}
+	}
 }
