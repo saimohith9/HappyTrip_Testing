@@ -13,7 +13,6 @@ pipeline {
              bat 'mvn clean install'
              bat 'mvn compile'
              bat 'mvn test'
-		bat 'java testng.xml'	
 		}
 		}
 		}
