@@ -10,9 +10,9 @@ pipeline {
 	stages {
 		     stage('build & Test'){
             steps {
-             bat 'mvn pom.xml clean install'
-             bat 'mvn pom.xml compile'
-             bat 'mvn pom.xml test'
+             bat 'mvn clean install'
+             bat 'mvn compile'
+             bat 'mvn test'
 		bat 'java testng.xml'	
 		}
 		}
