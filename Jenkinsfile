@@ -38,9 +38,8 @@ archiveArtifacts(artifacts: './reports/*.html', allowEmptyArchive: true)
 //  buildStatus = buildStatus ?: 'SUCCESS'
 		
 		def summary = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
-		def details = //"""<p><b>${buildStatus}</b> : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-		   // <p>Check console output at ${env.BUILD_URL}; ${env.JOB_NAME} [${env.BUILD_NUMBER}];</p>
-		  """${SCRIPT, template='groovy-html.template'}"""
+		def details = """<p><b>${buildStatus}</b> : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+		    <p>Check console output at ${env.BUILD_URL}; ${env.JOB_NAME} [${env.BUILD_NUMBER}];</p>"""
 		
-		emailext attachmentsPattern: '*reports/*.html' ,body: details,subject: summary,to:'saimohith49@gmail.com' 
+		emailext attachmentsPattern: '*reports/*.html' ,body: details,subject: summary, mimeType: 'text/html',to:'saimohith49@gmail.com' 
 }
