@@ -22,7 +22,7 @@ public abstract class BaseClass {
 	protected static WebDriver driver;
 	public static ExtentReports reports;
 	public static ExtentTest logs;
-	String filePath = "D:\\work space\\testing\\happytripproject";
+	String filePath = "./";
 	
 	@BeforeTest
 	public void startReport() {
@@ -32,7 +32,7 @@ public abstract class BaseClass {
 	
 	@BeforeMethod
 	public static void setup() {
-		System.setProperty("webdriver.chrome.driver", "D:\\work space\\lib\\ChromeDriver.exe");
+		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get("http://43.254.161.195:8085/happytripcrclean1");
 		driver.manage().window().maximize();
