@@ -11,7 +11,7 @@ pipeline {
 		     stage('build & Test'){
             steps {
              bat 'mvn clean install'
-		      bat 'mvn test -Dbrowser=chrome'
+		      bat 'mvn test -Dselenium.browser=chrome'
             	}
 		}
 		}
