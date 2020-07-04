@@ -10,8 +10,8 @@ pipeline {
 	stages {
 		     stage('build & Test'){
             steps {
-		     bat 'mvn test'
              bat 'mvn clean install'
+		      bat 'mvn test -Dbrowser=chrome'
             	}
 		}
 		}
