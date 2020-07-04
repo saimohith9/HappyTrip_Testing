@@ -9,6 +9,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
@@ -30,13 +31,17 @@ public abstract class BaseClass {
 	reports.loadConfig(new File(filePath +"\\report-config.xml"));
 	}
 	
-	@BeforeMethod
+	@BeforeClass
 	public static void setup() {
 		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get("http://43.254.161.195:8085/happytripcrclean1");
 		driver.manage().window().maximize();
-		logs = reports.startTest("login");
+			}
+	
+	@BeforeMethod
+	public void login(){
+	logs = reports.startTest("login");
 		driver.findElement(By.linkText("Log in as admin")).click();
 		AdminLoginModel admin = new AdminLoginModel(driver);
 		admin.sendUsername("admin@mindtree.com");
@@ -45,9 +50,10 @@ public abstract class BaseClass {
 		admin.assertResult();
 		logs.log(LogStatus.PASS, "Login is passed");
 	}
-//	@AfterMethod
-//	public static void tearDown() {
-//	}
+	@AfterClass
+	public static void tearDown() {
+		driver.close();
+	}
 	@AfterMethod
 	public void getResult(ITestResult result) {
 		if(result.getStatus() == ITestResult.FAILURE) {
@@ -57,8 +63,7 @@ public abstract class BaseClass {
 			logs.log(LogStatus.SKIP, "Test Case Skipped is "+result.getName());
 		}
 		reports.endTest(logs);
-		driver.close();
-	}
+			}
 	
 	@AfterTest
 	public void endReport() {
